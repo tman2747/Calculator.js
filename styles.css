@@ -17,7 +17,6 @@ body{
     display: flex;
     height: 100%;
     width: 100%;
-    flex: 1,0, auto;
     justify-content: center;
     align-items: center;
 }
@@ -25,14 +24,34 @@ body{
     display: flex;
     background-color: black;
     width: 500px;
-    height: 800px;
-    justify-content: space-around;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex: 0 0 auto;
 }
 
-button{
+.defaultButton{
     height: 105px;
     width: 105px;
-    border-radius: 90px;
-    background-color: lightgrey;
+    border-radius: 100px;
+    border: 0px, solid,rgb(255, 0, 217);
     margin: 10px 10px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.defaultButton.buttonNumber{
+    background-color: rgb(104, 104, 104);
+}
+
+.defaultButton.buttonSecondary{
+    background-color: rgb(183, 183, 183);
+}
+
+.defaultButton.buttonSymbol{
+    background-color: rgb(255, 136, 0);
+}
+
+.buttonGrow{
+    width: 230px;
+    margin: auto;
 }
