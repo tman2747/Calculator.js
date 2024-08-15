@@ -41,6 +41,7 @@ body{
 
 .defaultButton.buttonNumber{
     background-color: rgb(104, 104, 104);
+    color: rgb(250, 250, 250);
 }
 
 .defaultButton.buttonSecondary{
@@ -49,6 +50,7 @@ body{
 
 .defaultButton.buttonSymbol{
     background-color: rgb(255, 136, 0);
+    color: rgb(250, 250, 250);
 }
 
 .buttonGrow{
