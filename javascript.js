@@ -13,19 +13,28 @@ function operate(number1, number2, operator)
             total = add(number1,number2)
             previousValue = total
             operator = ""
-            console.log(total)
             break;
         case "-":
-            subtract(number1,number2)    
+            total = subtract(number1,number2)
+            previousValue = total
+            operator = ""
+            console.log(total)
             break;
-            case test:
-            
+        case "×":
+            total = mulitply(number1,number2)
+            previousValue = total
+            operator = ""
+            console.log(total)
             break;
-            case test:
-            
+        case "÷":
+            total = divide(number1,number2)
+            previousValue = total
+            operator = ""
+            console.log(total)
             break;
     
         default:
+            console.log("This opperation has not been added.");
             break;
     }
 }
@@ -41,7 +50,6 @@ function add(number1, number2)
 
 function subtract(number1, number2)
 {
-
     return Number(number1) - Number(number2)
 }
 
@@ -75,6 +83,7 @@ calculatorButtons.forEach(element => {
     element.addEventListener("click", (e) =>{
         if (e.target.classList.contains("buttonNumber"))
         {
+            console.log(e.target.textContent)
             currentValue += e.target.textContent
             calculatorText.innerHTML = currentValue
         }
@@ -86,11 +95,50 @@ calculatorButtons.forEach(element => {
                  break;
             case "+":
                 operator = "+"
-                if (previousValue > 0)
+                if (currentValue != "")
                     operate(previousValue,currentValue,operator)
                 if (previousValue == 0)
                 {
                     previousValue = currentValue
+                }
+                currentValue = ""
+                showTotal()
+                break;
+            case "-":
+                operator = "-"
+                if (currentValue != "")
+                {
+                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
+                }
+                if (previousValue == 0)
+                {
+                    previousValue = currentValue
+                }
+                currentValue = ""
+                showTotal()
+                break;
+            case "×":
+                operator = "×"
+                if (currentValue != "")
+                {
+                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
+                   }
+                    if (previousValue == 0)
+                {
+                     previousValue = currentValue
+                }
+                currentValue = ""
+                showTotal()
+                break;
+            case "÷":
+                operator = "÷"
+                if (previousValue != "")
+                {
+                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
+                   }
+                    if (previousValue == 0)
+                {
+                     previousValue = currentValue
                 }
                 currentValue = ""
                 showTotal()
@@ -154,82 +202,3 @@ calculatorButtons.forEach(element => {
         //             }
         //     })
         // })
-
-
-
-// calculatorButtons.forEach(element => {
-//     element.addEventListener("click", (e)=>{
-//         if (e.target.classList.contains("buttonNumber"))
-//             {
-//                 currentValue += e.target.textContent
-//                 updateText()
-//             }
-//         else
-//         {
-//             switch (e.target.textContent) {
-//                 case "C":
-//                     fullClear()
-//                     plusEnabled = false;
-//                     break;
-//                 case "+":
-//                     if (plusEnabled)
-//                     {
-//                         total = previousValue + Number(currentValue)
-//                         previousValue = total
-//                         clear()
-//                         showTotal()
-//                         currentValue = ""
-//                     }
-//                     else
-//                     {
-//                     previousValue = Number(currentValue) 
-//                     currentValue = ""
-//                     plusEnabled = true;
-//                     e.target.style.backgroundColor = " rgb(255, 255, 255)"
-//                     e.target.style.color = "rgb(0, 0, 0)"
-//                     }
-//                     break;
-//                 case "=":
-//                     total = previousValue + Number(currentValue)
-//                     currentValue = total
-//                     plusEnabled = false;
-//                     showTotal()
-//                     break;
-//                 default:
-//                     console.log("ERROR!")
-//                     break;
-//             }
-//         }
-//         console.log(`previousValue = ${previousValue}`)
-//         console.log(`currentValue = ${currentValue}`)
-//         console.log(`total = ${total}`)
-//     })
-// });
-
-// function updateText()
-// {
-//     calculatorText.innerHTML = currentValue
-// }
-
-// function showTotal()
-// {
-//     calculatorText.innerHTML = total
-// }
-
-// function fullClear()
-// {
-//     calculatorText.innerHTML = 0
-//     currentValue = ""
-//     previousValue = 0
-//     total = 0
-// }
-
-// function clear()
-// {
-//     calculatorText.innerHTML = 0
-//     currentValue = 0
-// }
-// I think the problem may lie here or in the the above plus. I might need to add a seperate registar to hold the total whats being inputted and the previous value
-// i just changed the name of firstNumber to total and I think I should refactor that back and then add a seperate new total to actually track logic
-//might be smart to add functions for add sub divide ect to make sure everything works correctly and all the buttons do is edit the number and then call the relavent function
-// maybe by checking if the prev number isnt blank or something and if it isnt then call the function else just do the norm
