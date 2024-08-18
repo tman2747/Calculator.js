@@ -18,19 +18,16 @@ function operate(number1, number2, operator)
             total = subtract(number1,number2)
             previousValue = total
             operator = ""
-            console.log(total)
             break;
         case "×":
             total = mulitply(number1,number2)
             previousValue = total
             operator = ""
-            console.log(total)
             break;
         case "÷":
             total = divide(number1,number2)
             previousValue = total
             operator = ""
-            console.log(total)
             break;
     
         default:
@@ -62,6 +59,12 @@ function mulitply(number1, number2)
 
 function divide(number1, number2)
 {
+    if (number2 == 0)
+    {
+        console.log("Imagine that you have zero cookies and you split them evenly among zero friends. How many cookies does each person get?")
+        return "Error"
+
+    }
     return (number1 / number2)
 }
 
@@ -83,7 +86,6 @@ calculatorButtons.forEach(element => {
     element.addEventListener("click", (e) =>{
         if (e.target.classList.contains("buttonNumber"))
         {
-            console.log(e.target.textContent)
             currentValue += e.target.textContent
             calculatorText.innerHTML = currentValue
         }
@@ -143,6 +145,24 @@ calculatorButtons.forEach(element => {
                 currentValue = ""
                 showTotal()
                 break;
+            case "+/-":
+                if (Number(currentValue)>0)
+                {
+                    currentValue -= (currentValue * 2)
+                    calculatorText.innerHTML = currentValue
+                }
+                else if (Number(currentValue) < 0)
+                {
+                    currentValue = (currentValue * -1)
+                    calculatorText.innerHTML = currentValue
+                }
+                else
+                {
+                    total = (total * -1)
+                    previousValue = total
+                    calculatorText.innerHTML = total
+                }
+                break;
             case "=":
                 operate(previousValue,currentValue,operator)
                 showTotal()
@@ -157,48 +177,3 @@ calculatorButtons.forEach(element => {
         
     })
 })
-
-        // calculatorButtons.forEach(element => {
-        //     element.addEventListener("click", (e) =>{
-        //         if (e.target.classList.contains("buttonNumber"))
-        //         {
-        //             currentValue += e.target.textContent
-        //             calculatorText.innerHTML = currentValue
-        //         }
-        //         switch (e.target.textContent) {
-        //             case "C":
-        //                 clear()
-        //                 calculatorText.innerHTML = "0"
-        //                 break;
-        //             case "+":
-        //                 if (operator == "+")
-        //                     {
-        //                         total = add(previousValue, Number(currentValue))
-        //                         previousValue = Number(total)
-        //                         currentValue = ""
-        //                         showTotal()
-        //                     }
-        //                     else
-        //                     {
-        //                         operator = "+"
-        //                         previousValue = Number(currentValue)
-        //                         currentValue = ""
-        //                     }
-        //                 break;
-        //             default:
-        //                 break;
-        //         }
-        //         if (e.target.textContent == "=")
-        //             {
-        //                 switch (operator) {
-        //                     case "+":
-        //                         total = add(previousValue, Number(currentValue))
-        //                         showTotal()
-        //                         break;
-                        
-        //                     default:
-        //                         break;
-        //                 }
-        //             }
-        //     })
-        // })
