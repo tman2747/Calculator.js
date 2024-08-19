@@ -95,56 +95,22 @@ calculatorButtons.forEach(element => {
                  clear()
                  calculatorText.innerHTML = "0"
                  break;
-            case "+":
-                operator = "+"
-                if (currentValue != "")
-                    operate(previousValue,currentValue,operator)
-                if (previousValue == 0)
-                {
-                    previousValue = currentValue
-                }
-                currentValue = ""
-                showTotal()
-                break;
             case "-":
-                operator = "-"
+            case "×" :
+            case "÷":
+            case "+":
                 if (currentValue != "")
-                {
-                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
-                }
-                if (previousValue == 0)
+                    if (operator != "")
+                    operate(previousValue,currentValue,operator)
+                else
                 {
                     previousValue = currentValue
                 }
+                operator = e.target.textContent
                 currentValue = ""
                 showTotal()
                 break;
-            case "×":
-                operator = "×"
-                if (currentValue != "")
-                {
-                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
-                   }
-                    if (previousValue == 0)
-                {
-                     previousValue = currentValue
-                }
-                currentValue = ""
-                showTotal()
-                break;
-            case "÷":
-                operator = "÷"
-                if (previousValue != "")
-                {
-                    operate(currentValue,previousValue,operator) // had to switch this to get minus to work check order!
-                   }
-                    if (previousValue == 0)
-                {
-                     previousValue = currentValue
-                }
-                currentValue = ""
-                showTotal()
-                break;
+            
             case "+/-":
                 if (Number(currentValue)>0)
                 {
@@ -167,6 +133,7 @@ calculatorButtons.forEach(element => {
                 operate(previousValue,currentValue,operator)
                 showTotal()
                 currentValue = ""
+                operator = ""
                 break;
             default:
                 break;
