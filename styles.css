@@ -75,7 +75,11 @@ body {
     border-top-right-radius: 20px;
     padding:0 10px 0 0;
     flex: 0 1 auto;
+}
+.numberArea span{
+    display: block;
     overflow: hidden;
-   /* does not currently handle overflow numbers */
-   
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
 }
